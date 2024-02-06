@@ -14,4 +14,13 @@
 		<servlet-name>HelloWorld</servlet-name>
 		<url-pattern>/my-first-page.html</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GenreController</servlet-name>
+		<servlet-class>by.vsu.jwpl.web.GenreController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GenreController</servlet-name>
+		<url-pattern>/api/genre</url-pattern>
+	</servlet-mapping>
 </web-app>
