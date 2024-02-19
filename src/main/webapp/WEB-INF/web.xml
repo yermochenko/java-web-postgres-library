@@ -23,4 +23,8 @@
 		<servlet-name>GenreController</servlet-name>
 		<url-pattern>/api/genre</url-pattern>
 	</servlet-mapping>
+
+	<listener>
+		<listener-class>by.vsu.jwpl.web.ApplicationStartListener</listener-class>
+	</listener>
 </web-app>

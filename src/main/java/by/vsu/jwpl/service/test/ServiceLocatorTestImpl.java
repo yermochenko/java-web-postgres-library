@@ -5,7 +5,7 @@ import by.vsu.jwpl.service.ServiceLocator;
 
 public class ServiceLocatorTestImpl implements ServiceLocator {
 	@Override
-	public GenreService newGenreServiceInstance() {
+	public GenreService getGenreServiceInstance() {
 		return new GenreServiceTestImpl();
 	}
 

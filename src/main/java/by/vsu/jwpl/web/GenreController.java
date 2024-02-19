@@ -16,7 +16,7 @@ public class GenreController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try(ServiceLocator serviceLocator = ServiceLocator.newServiceLocatorInstance()) {
-			GenreService genreService = serviceLocator.newGenreServiceInstance();
+			GenreService genreService = serviceLocator.getGenreServiceInstance();
 			List<Genre> genres = genreService.findAll();
 			resp.setStatus(HttpServletResponse.SC_OK);
 			resp.setContentType("application/json");

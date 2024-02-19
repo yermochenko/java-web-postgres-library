@@ -1,11 +1,11 @@
 package by.vsu.jwpl.service;
 
-import by.vsu.jwpl.service.test.ServiceLocatorTestImpl;
+import by.vsu.jwpl.service.main.ServiceLocatorImpl;
 
 public interface ServiceLocator extends AutoCloseable {
-	GenreService newGenreServiceInstance() throws ServiceException;
+	GenreService getGenreServiceInstance() throws ServiceException;
 
-	static ServiceLocator newServiceLocatorInstance() throws ServiceException {
-		return new ServiceLocatorTestImpl();
+	static ServiceLocator newServiceLocatorInstance() {
+		return new ServiceLocatorImpl();
 	}
 }
