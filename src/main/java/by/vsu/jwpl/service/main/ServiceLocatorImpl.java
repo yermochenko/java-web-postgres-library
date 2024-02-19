@@ -6,11 +6,15 @@ import by.vsu.jwpl.dao.pgsql.GenreDaoPgsqlImpl;
 import by.vsu.jwpl.service.GenreService;
 import by.vsu.jwpl.service.ServiceException;
 import by.vsu.jwpl.service.ServiceLocator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class ServiceLocatorImpl implements ServiceLocator {
+	private static final Logger logger = LogManager.getLogger();
+
 	private GenreService genreService;
 	@Override
 	public GenreService getGenreServiceInstance() throws ServiceException {
@@ -39,7 +43,12 @@ public class ServiceLocatorImpl implements ServiceLocator {
 	private Connection connection;
 	private Connection getConnection() throws SQLException {
 		if(connection == null) {
-			connection = DatabaseConnector.getConnection();
+			try {
+				connection = DatabaseConnector.getConnection();
+			} catch(SQLException e) {
+				logger.error("Can't connect to database", e);
+				throw e;
+			}
 		}
 		return connection;
 	}

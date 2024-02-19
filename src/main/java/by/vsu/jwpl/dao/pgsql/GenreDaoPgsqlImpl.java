@@ -3,6 +3,8 @@ package by.vsu.jwpl.dao.pgsql;
 import by.vsu.jwpl.dao.DaoException;
 import by.vsu.jwpl.dao.GenreDao;
 import by.vsu.jwpl.domain.Genre;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,6 +12,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class GenreDaoPgsqlImpl extends BaseDaoPgsqlImpl implements GenreDao {
+	private static final Logger logger = LogManager.getLogger();
+
 	@Override
 	public Integer create(Genre genre) throws DaoException {
 		String sql = "INSERT INTO \"genre\" (\"name\") VALUES (?)";
@@ -23,6 +27,7 @@ public class GenreDaoPgsqlImpl extends BaseDaoPgsqlImpl implements GenreDao {
 			resultSet.next();
 			return resultSet.getInt(1);
 		} catch(SQLException e) {
+			logger.error("Can't execute SQL: {}", sql, e);
 			throw new DaoException(e);
 		} finally {
 			try { Objects.requireNonNull(resultSet).close(); } catch(Exception ignored) {}
@@ -47,6 +52,7 @@ public class GenreDaoPgsqlImpl extends BaseDaoPgsqlImpl implements GenreDao {
 			}
 			return genres;
 		} catch(SQLException e) {
+			logger.error("Can't execute SQL: {}", sql, e);
 			throw new DaoException(e);
 		} finally {
 			try { Objects.requireNonNull(resultSet).close(); } catch(Exception ignored) {}
@@ -71,6 +77,7 @@ public class GenreDaoPgsqlImpl extends BaseDaoPgsqlImpl implements GenreDao {
 			}
 			return genre;
 		} catch(SQLException e) {
+			logger.error("Can't execute SQL: {}", sql, e);
 			throw new DaoException(e);
 		} finally {
 			try { Objects.requireNonNull(resultSet).close(); } catch(Exception ignored) {}
@@ -88,6 +95,7 @@ public class GenreDaoPgsqlImpl extends BaseDaoPgsqlImpl implements GenreDao {
 			statement.setInt(2, genre.getId());
 			statement.executeUpdate();
 		} catch(SQLException e) {
+			logger.error("Can't execute SQL: {}", sql, e);
 			throw new DaoException(e);
 		} finally {
 			try { Objects.requireNonNull(statement).close(); } catch(Exception ignored) {}
@@ -103,6 +111,7 @@ public class GenreDaoPgsqlImpl extends BaseDaoPgsqlImpl implements GenreDao {
 			statement.setInt(1, id);
 			statement.executeUpdate();
 		} catch(SQLException e) {
+			logger.error("Can't execute SQL: {}", sql, e);
 			throw new DaoException(e);
 		} finally {
 			try { Objects.requireNonNull(statement).close(); } catch(Exception ignored) {}
