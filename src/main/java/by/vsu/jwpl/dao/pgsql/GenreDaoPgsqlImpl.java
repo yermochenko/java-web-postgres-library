@@ -37,7 +37,7 @@ public class GenreDaoPgsqlImpl extends BaseDaoPgsqlImpl implements GenreDao {
 
 	@Override
 	public List<Genre> readAll() throws DaoException {
-		String sql = "SELECT \"id\", \"name\" FROM \"genre\"";
+		String sql = "SELECT \"id\", \"name\" FROM \"genre\" ORDER BY \"name\"";
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {

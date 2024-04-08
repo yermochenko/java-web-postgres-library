@@ -1,0 +1,12 @@
+.genre_item {
+	color: chocolate;
+	cursor: pointer;
+}
+
+.genre_item:hover {
+	color: brown;
+}
+
+.inline_form {
+	display: inline-block;
+}
